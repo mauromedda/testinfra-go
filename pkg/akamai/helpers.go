@@ -7,7 +7,7 @@ import (
 )
 
 // XCacheKey is the Response Header "X-Cache-Key" data type. It does consist
-// of the following Cache Key Component
+// of the following Cache Key Components
 type XCacheKey struct {
 	SecureDeliveryIndicator string
 	TypeCode                string
@@ -59,4 +59,9 @@ func (xk *XCacheKey) GetOrigin() string {
 // GetSerial returns the Serial of the Akamai Cache configuration
 func (xk *XCacheKey) GetSerial() int {
 	return xk.Serial
+}
+
+// GetTTL returns the TTL of the Akamai Cache configuration
+func (xk *XCacheKey) GetTTL() string {
+	return xk.TTL
 }

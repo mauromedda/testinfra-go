@@ -9,6 +9,9 @@ import (
 	mockserver "testinfra-go/pkg/akamai/tests"
 )
 
+// Those are the settings of the Akamai HTTP client
+var settings = (&Settings{}).Default()
+
 func TestMain(m *testing.M) {
 	setup()
 	code := m.Run()

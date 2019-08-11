@@ -7,9 +7,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// Those are the settings of the Akamai HTTP client
-var settings = (&Settings{}).Default()
-
 func TestGetWithRequestE(t *testing.T) {
 
 	// url is the URL that must be verified
@@ -22,13 +19,14 @@ func TestGetWithRequestE(t *testing.T) {
 		t.Fatal(err)
 	}
 	// GET the resource setting the Pragma request headers
-	resp, err := c.GetWithRequestE(req, map[string]interface{}{
+	resp, err := c.GetWithRequestE(req, map[string]string{
 		"Pragma": "no-cache,akamai-x-cache-on,akamai-x-cache-remote-on,akamai-x-check-cacheable,akamai-x-get-cache-key,akamai-x-get-ssl-client-session-id,akamai-x-get-true-cache-key,akamai-x-serial-no,akamai-x-get-request-id,X-Akamai-CacheTrack",
 	})
-	defer resp.Body.Close()
 	if err != nil {
 		t.Fatal(err)
 	}
+
+	defer resp.Body.Close()
 
 	assert.Equal(t, 200, resp.StatusCode)
 
@@ -58,10 +56,8 @@ func TestGetE(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+
 	defer resp.Body.Close()
-	if err != nil {
-		t.Fatal(err)
-	}
 
 	assert.Equal(t, 200, resp.StatusCode)
 

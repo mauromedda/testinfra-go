@@ -71,3 +71,17 @@ func TestGetSerial(t *testing.T) {
 	}).GetSerial()
 	assert.Equal(t, expectedSerial, got)
 }
+
+func TestGetTTL(t *testing.T) {
+	expectedTTL := "1m"
+	got := (&XCacheKey{
+		SecureDeliveryIndicator: "S",
+		TypeCode:                "L",
+		Serial:                  1,
+		CPCode:                  1,
+		TTL:                     "1m",
+		FwdPath:                 "www.mockorig.com/it/donna",
+		QString:                 "?test=1",
+	}).GetTTL()
+	assert.Equal(t, expectedTTL, got)
+}

@@ -53,9 +53,9 @@ func (c *Client) GetE(url string) (*http.Response, error) {
 }
 
 // GetWithRequestE issues a GET to the specified URL. It returns an http.Response for further processing and any error.
-func (c *Client) GetWithRequestE(req *http.Request, hearders map[string]interface{}) (*http.Response, error) {
+func (c *Client) GetWithRequestE(req *http.Request, hearders map[string]string) (*http.Response, error) {
 	for k, v := range hearders {
-		req.Header.Set(k, v.(string))
+		req.Header.Set(k, v)
 	}
 	return c.client.Do(req)
 }
