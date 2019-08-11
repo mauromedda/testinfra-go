@@ -45,3 +45,18 @@ func XCacheKeyUnmarshal(xck string) (*XCacheKey, error) {
 	}, nil
 
 }
+
+// GetCP returns the CP code ID of the Akamai Cache configuration
+func (xk *XCacheKey) GetCP() int {
+	return xk.CPCode
+}
+
+// GetOrigin returns the Forward Path of the Akamai Cache configuration
+func (xk *XCacheKey) GetOrigin() string {
+	return xk.FwdPath
+}
+
+// GetSerial returns the Serial of the Akamai Cache configuration
+func (xk *XCacheKey) GetSerial() int {
+	return xk.Serial
+}

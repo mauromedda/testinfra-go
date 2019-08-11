@@ -29,3 +29,45 @@ func TestXCacheKeyUnmarshal(t *testing.T) {
 		assert.Equal(t, want, got)
 	})
 }
+
+func TestGetCP(t *testing.T) {
+	expectedCP := 1
+	got := (&XCacheKey{
+		SecureDeliveryIndicator: "S",
+		TypeCode:                "L",
+		Serial:                  1,
+		CPCode:                  1,
+		TTL:                     "1m",
+		FwdPath:                 "www.mockorig.com/it/donna",
+		QString:                 "?test=1",
+	}).GetCP()
+	assert.Equal(t, expectedCP, got)
+}
+
+func TestGetOrigin(t *testing.T) {
+	expectedFwdPath := "www.mockorig.com/it/donna"
+	got := (&XCacheKey{
+		SecureDeliveryIndicator: "S",
+		TypeCode:                "L",
+		Serial:                  1,
+		CPCode:                  1,
+		TTL:                     "1m",
+		FwdPath:                 "www.mockorig.com/it/donna",
+		QString:                 "?test=1",
+	}).GetOrigin()
+	assert.Equal(t, expectedFwdPath, got)
+}
+
+func TestGetSerial(t *testing.T) {
+	expectedSerial := 1
+	got := (&XCacheKey{
+		SecureDeliveryIndicator: "S",
+		TypeCode:                "L",
+		Serial:                  1,
+		CPCode:                  1,
+		TTL:                     "1m",
+		FwdPath:                 "www.mockorig.com/it/donna",
+		QString:                 "?test=1",
+	}).GetSerial()
+	assert.Equal(t, expectedSerial, got)
+}
